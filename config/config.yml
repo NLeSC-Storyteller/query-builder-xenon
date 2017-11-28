@@ -1,0 +1,57 @@
+#
+# Copyright 2013 Netherlands eScience Center
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+ComputeResources:
+    docker:
+        cwlCommand: cwltool
+        scheduler:
+            adaptor: slurm
+            location: ssh://localhost:10022
+            credential:
+                user: xenon
+                password: amF2YWdhdA==
+            #credentialsMap:
+            #    localhost:10022:
+    local:
+        cwlCommand: /usr/local/bin/cwltool
+        scheduler:
+            adaptor: local
+            location: /src/query-builder-xenon/running-jobs/
+
+#######
+# To use the docker slurm container instead
+# of the local one change the following line to
+# default: docker
+default: local
+
+####### 
+# To use the docker webdav instead of 
+# the local filesystem adaptor
+# Comment the following sourceFileSystem entry
+# and uncomment the webdav one.
+sourceFileSystem:
+   adaptor: file
+   location: /src/query-builder-xenon/cwl/
+
+targetFileSystem:
+   adaptor: file
+   location: /src/query-builder-xenon/results/
+   hosted: true
+
+# sourceFileSystem:
+#     adaptor: webdav
+#     location: http://localhost:5050
+
+      
