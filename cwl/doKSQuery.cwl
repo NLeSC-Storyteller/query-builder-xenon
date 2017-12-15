@@ -11,6 +11,8 @@
 #   1> /data/1.json \
 #   2> /data/1.err
 
+# java -Xmx2000m -cp "StoryTeller-v1.0-jar-with-dependencies.jar" vu.cltl.storyteller.json.JsonMakeStoryFromTripleData --entityType "http://dbpedia.org/ontology/Medicine;" --ks-limit 100 --ks-service http://130.37.53.82:50053 --log --token-index token.index.gz --eurovoc mapping_eurovoc_skos.label.concept.gz
+
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: java
@@ -54,6 +56,7 @@ inputs:
   - id: tokenIndex
     type: File
     doc: The token index file.
+    default: /data/token.index.gz
     inputBinding:
       position: 6
       prefix: --token-index

@@ -161,4 +161,6 @@ function splitJvmOpts() {
 eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $XENON_FLOW_OPTS
 
 perl -pi -e 's/KNOWLEDGE_STORE_SERVER_URL/$ENV{"KNOWLEDGE_STORE_SERVER_URL"}/g' /src/query-builder-xenon/cwl/doKSQuery.cwl
+cp /src/StoryTeller/target/StoryTeller-v1.0-jar-with-dependencies.jar cwl/
+
 exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" nl.esciencecenter.computeservice.rest.Swagger2SpringBoot "$@"
